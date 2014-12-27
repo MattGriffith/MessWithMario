@@ -30,7 +30,7 @@ end
 
 local animCounter = 0;
 
-function Step()
+function PostStep()
 	if (keyPressed(KEY_ESCAPE)) then endGame() end
 	if (keyPressed(KEY_F4)) then toggleFullScreen() end
 	
@@ -104,7 +104,7 @@ end
 local pressEnterText = "Press Enter to Begin"
 local pressEnterAlign = (getDisplayWidth() - getTextWidth(NMFont.ComicSansEwww,pressEnterText))/2
 
-function Render()
+function PostRender()
 	RenderTileMap()
 	RenderTitleImage()
 

@@ -17,14 +17,14 @@ local PHYS_STATE = {
 	crouching = { accelRate = 0, friction = 0.95, minXspeed = 2.5, maxXspeed = 2, maxYspeed = 5 },
 }
 
-function mario:SetAnim(left, right)
+function MyObject:SetAnim(left, right)
 	self.animRange[0] = left
 	if (right == nil) then self.animRange[1] = left+1
 	else self.animRange[1] = right+1 end
 	self.animLength = self.animRange[1]-self.animRange[0]
 end
 
-function mario:Init()
+function MyObject:Init()
 	self.physState = PHYS_STATE.upright
 
 	self.x, self.y = getDisplayWidth()/2, getDisplayHeight()/2
@@ -44,11 +44,11 @@ function mario:Init()
 
 end
 
-function mario:setBlockArray(bA)
+function MyObject:setBlockArray(bA)
 	self.blockArray = bA
 end
 
-function mario:downCollision(y)
+function MyObject:downCollision(y)
 	self.y = y
 	self.inAir = false;
 	if(self.yvel < 0) then
@@ -57,26 +57,26 @@ function mario:downCollision(y)
 	self.physState = PHYS_STATE.upright
 end
 
-function mario:sideCollision(x)
+function MyObject:sideCollision(x)
 	self.x = x
 --	self.xvel = 0
 end
 
-function mario:upCollision(y)
+function MyObject:upCollision(y)
 	self.y = y
 	self.yvel = -1 * self.yvel
 end
 
-function mario:getY()
+function MyObject:getY()
 	return self.y
 end
 
-function mario:getX()
+function MyObject:getX()
 	return self.x + MARIO_WIDTH/2
 end
 
 
-function mario:Step()
+function MyObject:Step()
 
 	-- Physics!
 	self.x, self.y = self.x+self.xvel, self.y+self.yvel
@@ -138,7 +138,7 @@ function mario:Step()
 	if (self.spriteCol >= self.animRange[1]) then self.spriteCol = self.spriteCol-self.animLength end
 end
 
-function mario:Render()
+function MyObject:Render()
 	pushMatrix()
 --	translateMatrix(math.floor(self.x),math.floor(self.y),0)
 	translateMatrix(self.x, self.y, 0)
@@ -160,6 +160,6 @@ function mario:Render()
 	popMatrix()
 end
 
-function mario:ShutDown()
+function MyObject:ShutDown()
 
 end

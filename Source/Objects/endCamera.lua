@@ -2,12 +2,12 @@
 @NetMissionResources
 --]]
 
-function endCamera:Init()
+function MyObject:Init()
 end
-function endCamera:Step()
+function MyObject:Step()
 end
-function endCamera:Render()
+function MyObject:Render()
 	popMatrix()
 end
-function endCamera:ShutDown()
+function MyObject:ShutDown()
 end

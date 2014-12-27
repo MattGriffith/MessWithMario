@@ -2,7 +2,6 @@
 @NetMissionResources
 [Object] blockObj; blockArrayObj; startCamera; endCamera; square; mario
 [Font] mainFont@ComicSansEwww.fnt;
-[Music] gameplay.ogg;
 --]]
 
 local startCameraDepth = -1000
@@ -14,26 +13,26 @@ local cameraInst
 
 function Init()
 
-	cameraInst = startCamera:new()
+	cameraInst = createInst(NMObject.startCamera)
 	registerInst(cameraInst,startCameraDepth)
-	registerInst(endCamera:new(), endCameraDepth)
+	registerInst(createInst(NMObject.endCamera), endCameraDepth)
 
-	blockArray = blockArrayObj:new()
+	blockArray = createInst(NMObject.blockArrayObj)
 	registerInst(blockArray, blockDepth)
 
-	marioObj = mario:new()
+	marioObj = createInst(NMObject.mario)
 	registerInst(marioObj, marioDepth)
 	marioObj:setBlockArray(blockArray)
 end
 
 local anim = 0
 
-function Step()
+function PostStep()
 	if (keyPressed(KEY_ESCAPE)) then endGame() end
 	if (keyPressed(KEY_F4)) then toggleFullScreen() end
 
 	if (anim % 100 == 0) then
-		newSquare = square:new()
+		newSquare = createInst(NMObject.square)
 		newSquare:setX(anim)
 		registerInst(newSquare,blockDepth)
 	end
@@ -74,7 +73,7 @@ function Step()
 	anim = anim+1
 end
 
-function Render()
+function PostRender()
 	-- Draw the mouse
 	drawLine(mouseX(),mouseY(),mouseX()+10,mouseY()-10)
 	drawLine(mouseX()+10,mouseY()-10,mouseX(),mouseY()-10)

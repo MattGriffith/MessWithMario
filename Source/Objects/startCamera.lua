@@ -2,16 +2,16 @@
 @NetMissionResources
 --]]
 
-function startCamera:Init()
+function MyObject:Init()
 	self.moveByX = -1;
 end
-function startCamera:Step()
+function MyObject:Step()
 	self.moveByX = self.moveByX-1
 end
 
-function startCamera:Render()
+function MyObject:Render()
 	pushMatrix()
 	translateMatrix(self.moveByX,0,0)
 end
-function startCamera:ShutDown()
+function MyObject:ShutDown()
 end

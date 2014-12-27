@@ -5,7 +5,7 @@
 local edgeLength = 40
 local padding = 60
 
-function square:Init()
+function MyObject:Init()
 	-- Pick a random corner and direction
 	if (math.random() > 0.5) then self.x = padding
 	else self.x = getDisplayWidth()-padding end
@@ -15,11 +15,11 @@ function square:Init()
 	self.angle = 0
 end
 
-function square:setX(x)
+function MyObject:setX(x)
 	self.x = x + getDisplayWidth()/2 + (math.random() - 0.5) * 800
 end
 
-function square:Step()
+function MyObject:Step()
 	self.x = self.x + 1
 	self.y = self.y+self.yvel
 	self.angle = self.angle+self.yvel
@@ -27,7 +27,7 @@ function square:Step()
 end
 
 local halfEdgeLength = edgeLength/2
-function square:Render()
+function MyObject:Render()
 	local alpha = 0.5+0.3*math.sin(self.angle*.033)
 	setColor(0,0,0,alpha)
 
@@ -40,5 +40,5 @@ function square:Render()
 	setColor(1,1,1,1)
 end
 
-function square:ShutDown()
+function MyObject:ShutDown()
 end

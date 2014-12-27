@@ -9,7 +9,7 @@ local column = matrixWidth + 1
 local blockWidth = 16
 local blockHeight = 16
 
-function blockArrayObj:Init()
+function MyObject:Init()
 
 	self.matrix = {}
 	for i=-1,matrixHeight+1 do
@@ -29,48 +29,48 @@ end
 
 local anim = 0
 
-function blockArrayObj:getIndices(xC, yC)
+function MyObject:getIndices(xC, yC)
 	local colIndex = math.floor((xC+anim)/blockWidth)
 	local rowIndex = math.floor(yC/blockHeight)
 	return colIndex, rowIndex
 end
 
-function blockArrayObj:getMarioIndices(xC, yC)
+function MyObject:getMarioIndices(xC, yC)
 	local colIndex = math.floor(xC/blockWidth)
 	local rowIndex = math.floor(yC/blockHeight)
 	return colIndex, rowIndex
 end
 
 -- returns Y Coord of bottom left corner of block
-function blockArrayObj:getYFromRow(row)
+function MyObject:getYFromRow(row)
 	return (row * blockHeight)
 end
 
-function blockArrayObj:getMarioXFromCol(col)
+function MyObject:getMarioXFromCol(col)
 	return (col * blockWidth)
 end
 
 -- this function returns the x coord of the MIDPOINT of the column
 -- that is, the x coord from mario's reference frame
-function blockArrayObj:getXFromCol(col)
+function MyObject:getXFromCol(col)
 	return (col* blockWidth) + blockWidth/2
 end
 
 -- returns X Coord of bottom left corner of block
 -- this function needs to use anim instead of the column variable. but I don't think I need a function like this anyway so I've commented it out
--- function blockArrayObj:getXFromCol(col)
+-- function MyObject:getXFromCol(col)
 -- 	return ((matrixWidth - column + col) * blockWidth)
 -- end
 
-function blockArrayObj:getBlockWidth()
+function MyObject:getBlockWidth()
 	return blockWidth
 end
 
-function blockArrayObj:getBlockHeight()
+function MyObject:getBlockHeight()
 	return blockHeight
 end
 
-function blockArrayObj:Step()
+function MyObject:Step()
 	local framesForBlockToPass = blockWidth
 	if (math.fmod(anim, framesForBlockToPass) == 0) then
 		column = column + 1
@@ -96,7 +96,7 @@ function blockArrayObj:Step()
 	anim = anim + 1
 end
 
-function blockArrayObj:Render()
+function MyObject:Render()
 	for col = column - matrixWidth -2, column do
 		for row = 0, matrixHeight do
 			if(self.matrix[row][col] == "block") then
